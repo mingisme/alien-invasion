@@ -78,6 +78,12 @@ class AlienInvasion:
                 self.bullets.remove(bullet)
         # print(len(self.bullets))
 
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+
+        if not self.aliens:
+            self.bullets.empty()
+            self._create_fleet()
+
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         for bullet in self.bullets.sprites():
